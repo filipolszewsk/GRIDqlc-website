@@ -52,7 +52,7 @@ export const translations = {
             ultra_price: "199",
             ultra_currency: "€",
             ultra_desc: "Future release. Upgrade path available for only €59 if you own Pro 1.0.",
-            ultra_url: "#",
+            ultra_url: "https://gridqlc.lemonsqueezy.com/checkout/buy/3b6dab2f-ae56-49a9-af87-f7bc083bdab6",
             popular_badge: "Future Release",
             btn_text: "Get It Now",
             free_features: [
@@ -205,7 +205,7 @@ export const translations = {
             ultra_price: "799",
             ultra_currency: "zł",
             ultra_desc: "Wkrótce. Dla posiadaczy wersji Pro v1.0, ścieżka upgrade'u za jedyne 59 EUR.",
-            ultra_url: "#",
+            ultra_url: "https://gridqlc.lemonsqueezy.com/checkout/buy/3b6dab2f-ae56-49a9-af87-f7bc083bdab6",
             popular_badge: "Wkrótce",
             btn_text: "Wybieram",
             free_features: [

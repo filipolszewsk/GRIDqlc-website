@@ -107,7 +107,7 @@ const Pricing = () => {
                                 </li>
                             ))}
                         </ul>
-                        <a href={t('pricing.ultra_url')} style={{ textDecoration: 'none', display: 'block', width: '100%' }}>
+                        <a href={t('pricing.ultra_url')} className="lemonsqueezy-button" style={{ textDecoration: 'none', display: 'block', width: '100%' }}>
                             <button className="btn btn-primary" style={{ width: '100%' }}>{t('pricing.btn_text')}</button>
                         </a>
                     </motion.div>
