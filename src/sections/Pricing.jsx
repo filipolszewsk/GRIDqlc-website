@@ -48,7 +48,9 @@ const Pricing = () => {
                                 </li>
                             ))}
                         </ul>
-                        <button className="btn btn-outline">{t('pricing.btn_text')}</button>
+                        <a href={t('pricing.free_url')} style={{ textDecoration: 'none', display: 'block', width: '100%' }}>
+                            <button className="btn btn-outline">{t('pricing.btn_text')}</button>
+                        </a>
                     </motion.div>
 
                     {/* Pro Package */}
@@ -75,7 +77,9 @@ const Pricing = () => {
                                 </li>
                             ))}
                         </ul>
-                        <button className="btn btn-outline">{t('pricing.btn_text')}</button>
+                        <a href={t('pricing.pro_url')} className="lemonsqueezy-button" style={{ textDecoration: 'none', display: 'block', width: '100%' }}>
+                            <button className="btn btn-outline" style={{ width: '100%' }}>{t('pricing.btn_text')}</button>
+                        </a>
                     </motion.div>
 
                     {/* Ultra Package */}
@@ -103,7 +107,9 @@ const Pricing = () => {
                                 </li>
                             ))}
                         </ul>
-                        <button className="btn btn-primary">{t('pricing.btn_text')}</button>
+                        <a href={t('pricing.ultra_url')} style={{ textDecoration: 'none', display: 'block', width: '100%' }}>
+                            <button className="btn btn-primary" style={{ width: '100%' }}>{t('pricing.btn_text')}</button>
+                        </a>
                     </motion.div>
                 </div>
             </div>
