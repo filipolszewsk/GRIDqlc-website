@@ -78,9 +78,12 @@ const GridWorkflow = () => {
                         .sticky-header {
                             top: 0;
                             width: 100%;
-                            padding-top: 80px; 
-                            padding-bottom: 40px;
+                            padding-top: 40px; 
+                            padding-bottom: 20px;
                             z-index: 20;
+                        }
+                        .mobile-hide-pill {
+                            display: none !important;
                         }
                         /* Use a pseudo-element for robust masking across the entire width */
                         .sticky-header::before {
@@ -163,7 +166,7 @@ const GridWorkflow = () => {
                             viewport={{ once: true }}
                             style={{ position: 'relative', zIndex: 60 }}
                         >
-                            <div style={{
+                            <div className="mobile-hide-pill" style={{
                                 display: 'inline-flex',
                                 alignItems: 'center',
                                 gap: '8px',
@@ -177,7 +180,7 @@ const GridWorkflow = () => {
                                 <span style={{ fontSize: '12px', fontWeight: '500', color: '#fff', letterSpacing: '2px' }}>WORKFLOW_ARCHITECTURE</span>
                             </div>
 
-                            <h2 className="web3-text-gradient" style={{ fontSize: 'clamp(3rem, 5vw, 5.5rem)', fontWeight: 600, letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: '24px' }}>
+                            <h2 className="web3-text-gradient" style={{ fontSize: 'clamp(3rem, 5vw, 5.5rem)', fontWeight: 600, letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: '16px' }}>
                                 {t('workflow.title')}
                             </h2>
                             <p style={{ fontSize: '1.25rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, maxWidth: '500px' }}>
