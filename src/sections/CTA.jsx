@@ -38,7 +38,7 @@ const CTA = ({ onPlayVideo }) => {
                 <motion.h2
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, amount: 0.1 }}
                     className="web3-text-gradient"
                     style={{
                         fontSize: 'clamp(3rem, 5vw, 5rem)',
@@ -54,7 +54,7 @@ const CTA = ({ onPlayVideo }) => {
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, amount: 0.1 }}
                     transition={{ delay: 0.1 }}
                     style={{
                         fontSize: '1.2rem',
@@ -69,7 +69,7 @@ const CTA = ({ onPlayVideo }) => {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, amount: 0.1 }}
                     transition={{ delay: 0.2 }}
                     style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center' }}
                 >

@@ -110,7 +110,7 @@ const Features = () => {
                                 key={i}
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: true, amount: 0.1 }}
                                 transition={{ duration: 0.5, delay: i * 0.05 }}
                                 className={f.span}
                                 style={{
@@ -123,7 +123,7 @@ const Features = () => {
                                     justifyContent: 'flex-start',
                                     position: 'relative',
                                     overflow: 'hidden',
-                                    transition: 'all 0.3s ease'
+                                    transition: 'background 0.3s ease, border-color 0.3s ease'
                                 }}
                                 onMouseEnter={(e) => {
                                     e.currentTarget.style.background = 'linear-gradient(145deg, #0a0a0a 0%, #050505 100%)';

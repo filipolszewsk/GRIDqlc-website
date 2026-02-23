@@ -123,7 +123,7 @@ const GridWorkflow = () => {
                                 key={i}
                                 initial={{ opacity: 0, y: 50 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ margin: "-20%", once: true }}
+                                viewport={{ once: true, amount: 0.1 }}
                                 transition={{ duration: 0.7, ease: "easeOut" }}
                                 style={{ position: 'relative' }}
                             >
@@ -163,7 +163,7 @@ const GridWorkflow = () => {
                         <motion.div
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, amount: 0.1 }}
                             style={{ position: 'relative', zIndex: 60 }}
                         >
                             <div className="mobile-hide-pill" style={{
