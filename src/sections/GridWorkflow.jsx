@@ -39,13 +39,27 @@ const GridWorkflow = () => {
             {/* Sticky Scroll Section */}
             <div ref={containerRef} style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
                 <style>{`
+                    .sticky-layout {
+                        display: flex;
+                        flex-direction: column;
+                    }
+                    .sticky-header {
+                        position: sticky;
+                        top: 10vh;
+                        z-index: 10;
+                    }
+                    .sticky-content {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15vh;
+                    }
+
                     @media (min-width: 1024px) {
                         .sticky-layout {
                             flex-direction: row !important;
                             align-items: flex-start;
                         }
                         .sticky-header {
-                            position: sticky;
                             top: 15vh;
                             width: 50%;
                             height: 85vh;
@@ -54,15 +68,33 @@ const GridWorkflow = () => {
                         .sticky-content {
                             width: 50%;
                             margin-top: 50vh;
+                            gap: 20vh;
                         }
                     }
                     @media (max-width: 1023px) {
-                        .sticky-content { padding-top: 40px; }
-                        .sticky-item { margin-bottom: 60px !important; }
+                        .sticky-header {
+                            background: linear-gradient(180deg, #000 85%, transparent 100%);
+                            padding-top: 20px;
+                            padding-bottom: 20px;
+                            margin-top: -20px; /* offset padding */
+                        }
+                        .sticky-content { 
+                            padding-top: 10vh; 
+                            gap: 120px;
+                        }
+                        .container-layout {
+                            padding: 60px 20px !important;
+                        }
+                        .comparison-section {
+                            padding: 60px 20px !important;
+                        }
+                        .comparison-title-container {
+                            margin-bottom: 40px !important;
+                        }
                     }
                 `}</style>
 
-                <div className="container sticky-layout" style={{ display: 'flex', flexDirection: 'column', padding: '120px 20px', margin: '0 auto', maxWidth: '1200px' }}>
+                <div className="container sticky-layout container-layout" style={{ margin: '0 auto', maxWidth: '1200px', padding: '120px 20px' }}>
 
                     {/* Left/Top Sticky Element */}
                     <div className="sticky-header">
@@ -95,7 +127,7 @@ const GridWorkflow = () => {
                     </div>
 
                     {/* Right/Bottom Scrolling Content */}
-                    <div className="sticky-content" style={{ display: 'flex', flexDirection: 'column', gap: '20vh' }}>
+                    <div className="sticky-content">
                         {steps.map((step, i) => (
                             <motion.div
                                 className="sticky-item"
@@ -140,9 +172,10 @@ const GridWorkflow = () => {
             </div>
 
             {/* HUD Comparison List Section */}
-            <div style={{ padding: '120px 20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+            <div className="comparison-section" style={{ padding: '120px 20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
                 <div className="container" style={{ maxWidth: '1000px', margin: '0 auto' }}>
                     <motion.div
+                        className="comparison-title-container"
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -167,7 +200,7 @@ const GridWorkflow = () => {
                                     gridTemplateColumns: 'minmax(120px, 1fr) 2fr auto 3fr',
                                     gap: '20px',
                                     alignItems: 'center',
-                                    padding: '24px',
+                                    padding: 'clamp(16px, 3vw, 24px)',
                                     background: '#050505',
                                     border: '1px solid rgba(255,255,255,0.05)',
                                     borderRadius: '16px',

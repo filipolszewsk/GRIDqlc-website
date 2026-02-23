@@ -47,11 +47,19 @@ const Features = () => {
     ];
 
     return (
-        <section id="features" style={{ backgroundColor: '#000', padding: '120px 20px', position: 'relative' }}>
+        <section id="features" className="features-section" style={{ backgroundColor: '#000', position: 'relative' }}>
+            <style>{`
+                .features-section { padding: 120px 20px; }
+                @media (max-width: 768px) {
+                    .features-section { padding: 60px 20px; }
+                    .features-header { margin-bottom: 40px !important; }
+                }
+            `}</style>
             <div className="container" style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
                 {/* Header Section */}
                 <motion.div
+                    className="features-header"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
