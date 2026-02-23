@@ -42,11 +42,13 @@ const GridWorkflow = () => {
                     .sticky-layout {
                         display: flex;
                         flex-direction: column;
+                        align-items: flex-start;
                     }
                     .sticky-header {
                         position: sticky;
                         top: 10vh;
                         z-index: 10;
+                        align-self: flex-start;
                     }
                     .sticky-content {
                         display: flex;
