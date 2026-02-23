@@ -41,8 +41,8 @@ function App() {
 
                 <div style={{ position: 'relative', zIndex: 5, background: 'var(--bg-color)' }}>
                     <GridWorkflow />
-                    <Features />
                     <Pricing />
+                    <Features />
                     <CTA onPlayVideo={handlePlayVideo} />
                 </div>
             </main>

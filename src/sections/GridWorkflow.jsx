@@ -192,7 +192,7 @@ const GridWorkflow = () => {
                                     </div>
 
                                     {/* Old (Crossed out/dimmed) */}
-                                    <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: '14px', textDecoration: 'line-through' }}>
+                                    <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '14px', textDecoration: 'line-through' }}>
                                         {row.old}
                                     </div>
 
