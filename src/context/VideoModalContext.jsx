@@ -74,7 +74,7 @@ export const VideoModalProvider = ({ children }) => {
                             animate={{ scale: 1, opacity: 1 }}
                             exit={{ scale: 0.9, opacity: 0 }}
                             transition={{ duration: 0.3, delay: 0.1 }}
-                            style={{ width: '90%', maxWidth: '1200px', aspectRatio: '16/9', background: '#000', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 0 50px rgba(0,0,0,0.5)' }}
+                            style={{ width: '85%', maxWidth: '960px', aspectRatio: '16/9', background: '#000', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 0 50px rgba(0,0,0,0.5)' }}
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/* Convert standard YouTube link to embed format */}
