@@ -78,7 +78,7 @@ const GridWorkflow = () => {
                         .sticky-header {
                             top: 0;
                             width: 100%;
-                            padding-top: 40px; 
+                            padding-top: 130px; 
                             padding-bottom: 20px;
                             z-index: 20;
                         }
@@ -92,8 +92,8 @@ const GridWorkflow = () => {
                             top: -100px;  /* Guarantee coverage under navbar */
                             left: -20px;  /* Cover container padding */
                             right: -20px; /* Cover container padding */
-                            bottom: -150px; /* Extend mask completely past the text */
-                            background: linear-gradient(180deg, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+                            bottom: -40px; /* Pulled up so more text is visible */
+                            background: linear-gradient(180deg, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);
                             z-index: -1;
                             pointer-events: none;
                         }
