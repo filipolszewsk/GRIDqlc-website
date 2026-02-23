@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import heroBg from '../assets/5142456C-3B21-44D6-BDEA-EEA7088716F6.png';
+import heroBg from '../assets/hero-bg-opt.jpg';
 
 const Hero = ({ onPlayVideo }) => {
     const [isMobile, setIsMobile] = useState(false);
