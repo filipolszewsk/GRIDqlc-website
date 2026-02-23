@@ -42,15 +42,16 @@ const GridWorkflow = () => {
                     .sticky-layout {
                         display: flex;
                         flex-direction: column;
-                        align-items: flex-start;
                     }
                     .sticky-header {
+                        order: -1; /* Keep visually first */
                         position: sticky;
                         top: 10vh;
-                        z-index: 10;
-                        align-self: flex-start;
+                        z-index: 50;
                     }
                     .sticky-content {
+                        position: relative;
+                        z-index: 1;
                         display: flex;
                         flex-direction: column;
                         gap: 15vh;
@@ -75,10 +76,23 @@ const GridWorkflow = () => {
                     }
                     @media (max-width: 1023px) {
                         .sticky-header {
-                            background: linear-gradient(180deg, #000 85%, transparent 100%);
-                            padding-top: 20px;
-                            padding-bottom: 20px;
-                            margin-top: -20px; /* offset padding */
+                            top: 0;
+                            width: 100%;
+                            padding-top: 80px; 
+                            padding-bottom: 40px;
+                            z-index: 20;
+                        }
+                        /* Use a pseudo-element for robust masking across the entire width */
+                        .sticky-header::before {
+                            content: '';
+                            position: absolute;
+                            top: -100px;  /* Guarantee coverage under navbar */
+                            left: -20px;  /* Cover container padding */
+                            right: -20px; /* Cover container padding */
+                            bottom: -150px; /* Extend mask completely past the text */
+                            background: linear-gradient(180deg, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+                            z-index: -1;
+                            pointer-events: none;
                         }
                         .sticky-content { 
                             padding-top: 10vh; 
@@ -98,38 +112,8 @@ const GridWorkflow = () => {
 
                 <div className="container sticky-layout container-layout" style={{ margin: '0 auto', maxWidth: '1200px', padding: '120px 20px' }}>
 
-                    {/* Left/Top Sticky Element */}
-                    <div className="sticky-header">
-                        <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            <div style={{
-                                display: 'inline-flex',
-                                alignItems: 'center',
-                                gap: '8px',
-                                padding: '6px 14px',
-                                background: 'rgba(255, 255, 255, 0.05)',
-                                border: '1px solid rgba(255, 255, 255, 0.1)',
-                                borderRadius: '20px',
-                                marginBottom: '24px'
-                            }}>
-                                <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#fff' }} />
-                                <span style={{ fontSize: '12px', fontWeight: '500', color: '#fff', letterSpacing: '2px' }}>WORKFLOW_ARCHITECTURE</span>
-                            </div>
-
-                            <h2 className="web3-text-gradient" style={{ fontSize: 'clamp(3rem, 5vw, 5.5rem)', fontWeight: 600, letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: '24px' }}>
-                                {t('workflow.title')}
-                            </h2>
-                            <p style={{ fontSize: '1.25rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, maxWidth: '500px' }}>
-                                {t('workflow.subtitle')}
-                            </p>
-                        </motion.div>
-                    </div>
-
-                    {/* Right/Bottom Scrolling Content */}
-                    <div className="sticky-content">
+                    {/* Right/Bottom Scrolling Content defaults to order: 0, so it appears after header visually */}
+                    <div className="sticky-content" style={{ position: 'relative', zIndex: 1, transform: 'translateZ(0)' }}>
                         {steps.map((step, i) => (
                             <motion.div
                                 className="sticky-item"
@@ -169,6 +153,37 @@ const GridWorkflow = () => {
                                 </div>
                             </motion.div>
                         ))}
+                    </div>
+
+                    {/* Left/Top Sticky Element DOM swapped to render on top */}
+                    <div className="sticky-header" style={{ position: 'sticky', zIndex: 50, transform: 'translateZ(0)' }}>
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            style={{ position: 'relative', zIndex: 60 }}
+                        >
+                            <div style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                                padding: '6px 14px',
+                                background: 'rgba(255, 255, 255, 0.05)',
+                                border: '1px solid rgba(255, 255, 255, 0.1)',
+                                borderRadius: '20px',
+                                marginBottom: '24px'
+                            }}>
+                                <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#fff' }} />
+                                <span style={{ fontSize: '12px', fontWeight: '500', color: '#fff', letterSpacing: '2px' }}>WORKFLOW_ARCHITECTURE</span>
+                            </div>
+
+                            <h2 className="web3-text-gradient" style={{ fontSize: 'clamp(3rem, 5vw, 5.5rem)', fontWeight: 600, letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: '24px' }}>
+                                {t('workflow.title')}
+                            </h2>
+                            <p style={{ fontSize: '1.25rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, maxWidth: '500px' }}>
+                                {t('workflow.subtitle')}
+                            </p>
+                        </motion.div>
                     </div>
                 </div>
             </div>
