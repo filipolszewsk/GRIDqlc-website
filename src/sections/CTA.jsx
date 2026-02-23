@@ -1,11 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import { useVideoModal } from '../context/VideoModalContext';
 
-const CTA = () => {
+const CTA = ({ onPlayVideo }) => {
     const { t } = useLanguage();
-    const { openModal } = useVideoModal();
 
     return (
         <section
@@ -83,7 +81,7 @@ const CTA = () => {
                         </div>
                     </a>
 
-                    <div onClick={() => openModal(t('hero.walkthrough_link'))} style={{ textDecoration: 'none', cursor: 'pointer' }}>
+                    <div onClick={() => onPlayVideo(t('hero.walkthrough_link'))} style={{ textDecoration: 'none', cursor: 'pointer' }}>
                         <div className="web3-pill-layer" style={{ padding: '4px' }}>
                             <div className="glow-streak"></div>
                             <div className="web3-pill-inner" style={{ fontSize: '1.1rem', padding: '12px 32px' }}>

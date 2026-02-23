@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import { useVideoModal } from '../context/VideoModalContext';
 import heroBg from '../assets/5142456C-3B21-44D6-BDEA-EEA7088716F6.png';
 
-const Hero = () => {
+const Hero = ({ onPlayVideo }) => {
     const [isMobile, setIsMobile] = useState(false);
     const { t } = useLanguage();
-    const { openModal } = useVideoModal();
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -140,7 +138,7 @@ const Hero = () => {
                     transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
                     style={{ display: 'flex', gap: '1rem' }}
                 >
-                    <div onClick={() => openModal(t('hero.walkthrough_link'))} style={{ textDecoration: 'none' }}>
+                    <div onClick={() => onPlayVideo(t('hero.walkthrough_link'))} style={{ textDecoration: 'none', cursor: 'pointer' }}>
                         <div className="web3-pill-layer web3-pill-layer-inverted">
                             <div className="glow-streak"></div>
                             <div className="web3-pill-inner">
