@@ -70,10 +70,10 @@ export const VideoModalProvider = ({ children }) => {
                         </button>
 
                         <motion.div
-                            initial={{ scale: 0.9, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.9, opacity: 0 }}
-                            transition={{ duration: 0.3, delay: 0.1 }}
+                            initial={{ y: '100vh', opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: '100vh', opacity: 0 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 200 }}
                             style={{ width: '85%', maxWidth: '960px', aspectRatio: '16/9', background: '#000', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 0 50px rgba(0,0,0,0.5)' }}
                             onClick={(e) => e.stopPropagation()}
                         >
