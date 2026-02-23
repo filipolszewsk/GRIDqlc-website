@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LayoutGrid, RefreshCw, Zap, List, Save, Cpu, Settings2, ChevronDown } from 'lucide-react';
+import { LayoutGrid, RefreshCw, Zap, List, Save, Settings2, Terminal, Plus, Minus } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 const Features = () => {
@@ -11,170 +11,234 @@ const Features = () => {
         {
             title: t('features.f1_title'),
             desc: t('features.f1_desc'),
-            icon: <LayoutGrid />
+            icon: <LayoutGrid />,
+            span: 'col-span-1 md:col-span-2 row-span-2' // Large Feature 1
         },
         {
             title: t('features.f2_title'),
             desc: t('features.f2_desc'),
-            icon: <RefreshCw />
+            icon: <RefreshCw />,
+            span: 'col-span-1 md:col-span-1 row-span-1'
         },
         {
             title: t('features.f3_title'),
             desc: t('features.f3_desc'),
-            icon: <Zap />
+            icon: <Zap />,
+            span: 'col-span-1 md:col-span-1 row-span-1'
         },
         {
             title: t('features.f4_title'),
             desc: t('features.f4_desc'),
-            icon: <List />
+            icon: <List />,
+            span: 'col-span-1 md:col-span-2 row-span-1' // Wide Feature
         },
         {
             title: t('features.f5_title'),
             desc: t('features.f5_desc'),
-            icon: <Save />
+            icon: <Save />,
+            span: 'col-span-1 md:col-span-1 row-span-2' // Tall Feature
         },
         {
             title: t('features.f6_title'),
             desc: t('features.f6_desc'),
-            icon: <Settings2 />
+            icon: <Settings2 />,
+            span: 'col-span-1 md:col-span-1 row-span-1'
         }
     ];
 
-    const featureCardStyle = {
-        background: 'rgba(10, 10, 10, 0.7)',
-        backdropFilter: 'blur(16px)',
-        border: '1px solid rgba(255, 255, 255, 0.05)',
-        borderTop: '1px solid rgba(0, 242, 255, 0.3)',
-        boxShadow: 'inset 0 20px 40px -20px rgba(0, 242, 255, 0.05)',
-        borderRadius: 'var(--card-radius)',
-        padding: '2.5rem',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '1.5rem',
-        transition: 'all 0.3s ease'
-    };
-
     return (
-        <section id="features" className="features" style={{ paddingTop: '6rem', paddingBottom: '6rem' }}>
-            <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        <section id="features" style={{ backgroundColor: '#000', padding: '120px 20px', position: 'relative' }}>
+            <div className="container" style={{ maxWidth: '1200px', margin: '0 auto' }}>
+
+                {/* Header Section */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="section-header"
-                    style={{ marginBottom: '5rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+                    style={{ marginBottom: '80px', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}
                 >
-                    <div className="aura-badge" style={{ marginBottom: '1.5rem' }}>
-                        <div className="dot"></div> ADVANCED_CAPABILITIES
+                    <div style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        padding: '6px 14px',
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        borderRadius: '20px',
+                        marginBottom: '24px'
+                    }}>
+                        <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#fff' }} />
+                        <span style={{ fontSize: '12px', fontWeight: '500', color: '#fff', letterSpacing: '2px' }}>SYSTEM_CAPABILITIES</span>
                     </div>
-                    <h2 style={{ fontSize: '3rem', fontWeight: 600, letterSpacing: '-0.02em', marginBottom: '1rem' }}>{t('features.title')}</h2>
-                    <p style={{ maxWidth: '600px', margin: '0 auto', color: 'var(--text-secondary)', fontSize: '1.1rem' }}>{t('features.subtitle')}</p>
+
+                    <h2 className="web3-text-gradient" style={{ fontSize: 'clamp(2.5rem, 4vw, 4rem)', fontWeight: 600, letterSpacing: '-0.02em', marginBottom: '16px' }}>
+                        {t('features.title')}
+                    </h2>
+                    <p style={{ maxWidth: '600px', color: 'rgba(255,255,255,0.6)', fontSize: '1.1rem', lineHeight: 1.6 }}>
+                        {t('features.subtitle')}
+                    </p>
                 </motion.div>
 
-                <div className="features-inner" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem' }}>
-                    {features.map((f, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ duration: 0.5, delay: (i % 3) * 0.1 }}
-                            whileHover={{ y: -5, boxShadow: '0 20px 40px -10px rgba(0, 242, 255, 0.1), inset 0 20px 40px -20px rgba(0, 242, 255, 0.05)', borderTop: '1px solid rgba(0, 242, 255, 0.8)' }}
-                            style={featureCardStyle}
-                        >
-                            <div className="feature-icon" style={{
-                                width: '50px',
-                                height: '50px',
-                                background: 'rgba(0, 242, 255, 0.1)',
-                                border: '1px solid rgba(0, 242, 255, 0.2)',
-                                borderRadius: '12px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                color: 'var(--accent-cyan)'
-                            }}>
-                                {f.icon}
-                            </div>
-                            <h3 style={{ fontSize: '1.25rem', fontWeight: 500, margin: 0 }}>{f.title}</h3>
-                            <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0 }}>{f.desc}</p>
-                        </motion.div>
-                    ))}
+                {/* Bento Box Grid */}
+                <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(1, 1fr)',
+                    gap: '20px',
+                    // Using styled-jsx equivalent to handle the complex MD breakpoint layout inline
+                }}>
+                    <style>{`
+                        @media (min-width: 768px) {
+                            .bento-grid {
+                                grid-template-columns: repeat(3, 1fr);
+                                grid-auto-rows: minmax(150px, auto);
+                            }
+                            .col-span-2 { grid-column: span 2; }
+                            .row-span-2 { grid-row: span 2; }
+                        }
+                    `}</style>
+                    <div className="bento-grid" style={{ display: 'grid', gap: '20px', width: '100%' }}>
+                        {features.map((f, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: i * 0.05 }}
+                                className={f.span}
+                                style={{
+                                    background: '#050505',
+                                    border: '1px solid rgba(255,255,255,0.08)',
+                                    borderRadius: '24px',
+                                    padding: '40px',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    justifyContent: 'flex-start',
+                                    position: 'relative',
+                                    overflow: 'hidden',
+                                    transition: 'all 0.3s ease'
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.background = 'linear-gradient(145deg, #0a0a0a 0%, #050505 100%)';
+                                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.background = '#050505';
+                                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
+                                }}
+                            >
+                                {/* Radial subtle hover glow could be added here via JS event listener, keeping static for now */}
+                                <div style={{
+                                    width: '48px',
+                                    height: '48px',
+                                    background: 'rgba(255, 255, 255, 0.03)',
+                                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                                    borderRadius: '12px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    color: '#fff',
+                                    marginBottom: '24px'
+                                }}>
+                                    {React.cloneElement(f.icon, { size: 24 })}
+                                </div>
+                                <h3 style={{ fontSize: '1.5rem', fontWeight: 500, color: '#fff', marginBottom: '12px', letterSpacing: '-0.01em' }}>
+                                    {f.title}
+                                </h3>
+                                <p style={{ color: 'rgba(255,255,255,0.5)', lineHeight: 1.6, fontSize: '15px' }}>
+                                    {f.desc}
+                                </p>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
 
-                <div className="whats-new" style={{ marginTop: '6rem' }}>
+                {/* What's New Terminal Section */}
+                <div style={{ marginTop: '120px' }}>
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         style={{
-                            background: 'rgba(10, 10, 10, 0.8)',
-                            backdropFilter: 'blur(24px)',
-                            border: '1px solid rgba(255, 255, 255, 0.1)',
-                            borderTop: '1px solid rgba(255, 170, 0, 0.5)',
-                            boxShadow: 'inset 0 20px 40px -20px rgba(255, 170, 0, 0.1), 0 25px 50px -12px rgba(0,0,0,0.5)',
-                            borderRadius: 'calc(var(--card-radius) + 8px)',
-                            padding: '3rem',
-                            position: 'relative',
-                            overflow: 'hidden'
+                            background: '#000',
+                            border: '1px solid rgba(255, 255, 255, 0.15)',
+                            borderRadius: '12px',
+                            overflow: 'hidden',
+                            fontFamily: 'var(--font-mono, monospace)', // Fallback to monospace
                         }}
                     >
-                        {/* Background subtle glow */}
-                        <div style={{ position: 'absolute', top: 0, right: 0, width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(255,170,0,0.1) 0%, transparent 70%)', filter: 'blur(40px)', pointerEvents: 'none' }}></div>
-
+                        {/* Terminal Header */}
                         <div
-                            className="new-header"
                             onClick={() => setIsWhatsNewOpen(!isWhatsNewOpen)}
-                            style={{ cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', zIndex: 2 }}
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                padding: '20px 24px',
+                                borderBottom: isWhatsNewOpen ? '1px solid rgba(255,255,255,0.1)' : 'none',
+                                background: 'rgba(255,255,255,0.02)',
+                                cursor: 'pointer',
+                                transition: 'background 0.2s'
+                            }}
+                            onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
+                            onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
                         >
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-                                <div style={{
-                                    width: '48px',
-                                    height: '48px',
-                                    background: 'rgba(255, 170, 0, 0.1)',
-                                    border: '1px solid rgba(255, 170, 0, 0.2)',
-                                    borderRadius: '12px',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    color: 'var(--accent-orange)'
-                                }}>
-                                    <Cpu size={24} />
-                                </div>
-                                <h3 style={{ fontSize: '2rem', margin: 0, fontWeight: 600, color: '#FFF' }}>{t('features.whats_new_title')}</h3>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                                <Terminal size={20} color="#fff" />
+                                <span style={{ color: '#fff', fontSize: '14px', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                                    {t('features.whats_new_title')}
+                                </span>
                             </div>
-                            <motion.div
-                                animate={{ rotate: isWhatsNewOpen ? 180 : 0 }}
-                                transition={{ duration: 0.3 }}
-                                style={{ width: '40px', height: '40px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(255,255,255,0.05)', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)' }}
-                            >
-                                <ChevronDown size={20} color="var(--text-color)" />
-                            </motion.div>
+                            <div style={{ color: '#fff', opacity: 0.5 }}>
+                                {isWhatsNewOpen ? <Minus size={18} /> : <Plus size={18} />}
+                            </div>
                         </div>
 
+                        {/* Terminal Body */}
                         <AnimatePresence>
                             {isWhatsNewOpen && (
                                 <motion.div
                                     initial={{ height: 0, opacity: 0 }}
                                     animate={{ height: 'auto', opacity: 1 }}
                                     exit={{ height: 0, opacity: 0 }}
-                                    transition={{ duration: 0.3 }}
-                                    style={{ overflow: 'hidden', position: 'relative', zIndex: 2 }}
+                                    transition={{ duration: 0.4, ease: "easeInOut" }}
+                                    style={{ overflow: 'hidden' }}
                                 >
-                                    <div className="new-content-inner" style={{ paddingTop: '2.5rem' }}>
-                                        <p dangerouslySetInnerHTML={{ __html: t('features.whats_new_desc') }} style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', marginBottom: '2rem', lineHeight: 1.6 }} />
-                                        <ul className="new-list" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '1rem' }}>
+                                    <div style={{ padding: '32px 24px', background: '#000' }}>
+                                        <div style={{ color: 'rgba(255,255,255,0.5)', marginBottom: '32px', fontSize: '14px' }}>
+                                            <span style={{ color: '#00ff00' }}>~/gridqlc/changelog</span> $ cat latest_updates.txt
+                                            <br /><br />
+                                            <span dangerouslySetInnerHTML={{ __html: t('features.whats_new_desc') }} />
+                                        </div>
+
+                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', position: 'relative' }}>
+                                            {/* Vertical line connecting terminal logs */}
+                                            <div style={{ position: 'absolute', left: '11px', top: '10px', bottom: '10px', width: '1px', background: 'rgba(255,255,255,0.1)' }} />
+
                                             {t('features.changelog').map((item, index) => (
-                                                <li key={index} style={{ background: 'rgba(0, 0, 0, 0.4)', padding: '1.5rem', borderRadius: '12px', borderLeft: '3px solid var(--accent-orange)', color: 'var(--text-secondary)', borderTop: '1px solid rgba(255,255,255,0.03)', borderRight: '1px solid rgba(255,255,255,0.03)', borderBottom: '1px solid rgba(255,255,255,0.03)' }}>
-                                                    <strong style={{ color: '#FFF', display: 'block', marginBottom: '0.5rem', fontSize: '1.1rem' }}>{item.title}</strong> {item.desc}
-                                                </li>
+                                                <div key={index} style={{ padding: '16px 0', display: 'flex', gap: '24px', position: 'relative' }}>
+                                                    {/* Node dot */}
+                                                    <div style={{ width: '24px', display: 'flex', justifyContent: 'center', alignItems: 'flex-start', paddingTop: '4px' }}>
+                                                        <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#fff', zIndex: 2 }} />
+                                                    </div>
+
+                                                    <div style={{ flex: 1 }}>
+                                                        <div style={{ color: '#fff', fontSize: '14px', fontWeight: 'bold', marginBottom: '8px' }}>
+                                                            {item.title}
+                                                        </div>
+                                                        <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '13px', lineHeight: 1.5 }}>
+                                                            {item.desc}
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             ))}
-                                        </ul>
+                                        </div>
                                     </div>
                                 </motion.div>
                             )}
                         </AnimatePresence>
                     </motion.div>
                 </div>
+
             </div>
         </section>
     );

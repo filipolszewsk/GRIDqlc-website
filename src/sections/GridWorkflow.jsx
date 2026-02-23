@@ -1,150 +1,218 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Grid, Layers, Zap, MousePointer2 } from 'lucide-react';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Grid, Layers, Zap, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import stageLighting from '../assets/stage_lights_elegant.png';
-import consoleAbstract from '../assets/stage_lights_intimate.png';
-import concertCrowd from '../assets/stage_lights_festival.png';
 
 const GridWorkflow = () => {
     const { t } = useLanguage();
+    const containerRef = useRef(null);
 
-    const cardBaseStyle = {
-        background: 'rgba(10, 10, 10, 0.7)',
-        backdropFilter: 'blur(16px)',
-        border: '1px solid rgba(255, 255, 255, 0.05)',
-        borderRadius: 'var(--card-radius)',
-        padding: '3rem',
-        display: 'flex',
-        flexDirection: 'column',
-        position: 'relative',
-        overflow: 'hidden',
-        transition: 'all 0.3s ease'
-    };
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start center", "end end"]
+    });
+
+    const steps = [
+        {
+            number: '01',
+            title: t('workflow.card1_title'),
+            desc: t('workflow.card1_desc'),
+            icon: <Grid size={48} strokeWidth={1} />,
+        },
+        {
+            number: '02',
+            title: t('workflow.card2_title'),
+            desc: t('workflow.card2_desc'),
+            icon: <Zap size={48} strokeWidth={1} />,
+        },
+        {
+            number: '03',
+            title: t('workflow.card3_title'),
+            desc: t('workflow.card3_desc'),
+            icon: <Layers size={48} strokeWidth={1} />,
+        }
+    ];
 
     return (
-        <section id="workflow" className="grid-workflow" style={{ position: 'relative' }}>
-            <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="section-header"
-                    style={{ marginBottom: '6rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
-                >
-                    <div className="aura-badge" style={{ marginBottom: '1.5rem' }}>
-                        <div className="dot"></div> WORKFLOW_ARCHITECTURE
+        <section id="workflow" style={{ backgroundColor: '#000', position: 'relative', overflow: 'visible' }}>
+
+            {/* Sticky Scroll Section */}
+            <div ref={containerRef} style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
+                <style>{`
+                    @media (min-width: 1024px) {
+                        .sticky-layout {
+                            flex-direction: row !important;
+                            align-items: flex-start;
+                        }
+                        .sticky-header {
+                            position: sticky;
+                            top: 15vh;
+                            width: 50%;
+                            height: 85vh;
+                            padding-right: 40px;
+                        }
+                        .sticky-content {
+                            width: 50%;
+                            margin-top: 50vh;
+                        }
+                    }
+                    @media (max-width: 1023px) {
+                        .sticky-content { padding-top: 40px; }
+                        .sticky-item { margin-bottom: 60px !important; }
+                    }
+                `}</style>
+
+                <div className="container sticky-layout" style={{ display: 'flex', flexDirection: 'column', padding: '120px 20px', margin: '0 auto', maxWidth: '1200px' }}>
+
+                    {/* Left/Top Sticky Element */}
+                    <div className="sticky-header">
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            <div style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                                padding: '6px 14px',
+                                background: 'rgba(255, 255, 255, 0.05)',
+                                border: '1px solid rgba(255, 255, 255, 0.1)',
+                                borderRadius: '20px',
+                                marginBottom: '24px'
+                            }}>
+                                <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: '#fff' }} />
+                                <span style={{ fontSize: '12px', fontWeight: '500', color: '#fff', letterSpacing: '2px' }}>WORKFLOW_ARCHITECTURE</span>
+                            </div>
+
+                            <h2 className="web3-text-gradient" style={{ fontSize: 'clamp(3rem, 5vw, 5.5rem)', fontWeight: 600, letterSpacing: '-0.02em', lineHeight: 1.1, marginBottom: '24px' }}>
+                                {t('workflow.title')}
+                            </h2>
+                            <p style={{ fontSize: '1.25rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, maxWidth: '500px' }}>
+                                {t('workflow.subtitle')}
+                            </p>
+                        </motion.div>
                     </div>
-                    <h2 style={{ fontSize: '3rem', fontWeight: 600, letterSpacing: '-0.02em', marginBottom: '1rem' }}>{t('workflow.title')}</h2>
-                    <p style={{ maxWidth: '600px', margin: '0 auto', color: 'var(--text-secondary)', fontSize: '1.1rem' }}>{t('workflow.subtitle')}</p>
-                </motion.div>
 
-                <div className="workflow-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                        whileHover={{ y: -5, boxShadow: '0 20px 40px -10px rgba(0, 242, 255, 0.1)', borderTop: '1px solid rgba(0, 242, 255, 0.8)' }}
-                        style={{ ...cardBaseStyle, borderTop: '1px solid rgba(0, 242, 255, 0.3)', boxShadow: 'inset 0 20px 40px -20px rgba(0, 242, 255, 0.05)' }}
-                    >
-                        <div className="card-image-wrapper" style={{ width: '100%', height: '200px', borderRadius: '12px', overflow: 'hidden', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.05)' }}>
-                            <img src={stageLighting} alt="Stage Lighting Rig" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'} />
-                        </div>
-                        <Grid style={{ color: 'var(--accent-cyan)', marginBottom: '1.5rem', width: 32, height: 32 }} />
-                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', fontWeight: 500 }}>{t('workflow.card1_title')}</h3>
-                        <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>{t('workflow.card1_desc')}</p>
-                    </motion.div>
+                    {/* Right/Bottom Scrolling Content */}
+                    <div className="sticky-content" style={{ display: 'flex', flexDirection: 'column', gap: '20vh' }}>
+                        {steps.map((step, i) => (
+                            <motion.div
+                                className="sticky-item"
+                                key={i}
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ margin: "-20%", once: true }}
+                                transition={{ duration: 0.7, ease: "easeOut" }}
+                                style={{ position: 'relative' }}
+                            >
+                                {/* Massive Background Number */}
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '-40px',
+                                    left: '-20px',
+                                    fontSize: '180px',
+                                    fontWeight: '800',
+                                    color: 'rgba(255,255,255,0.02)',
+                                    lineHeight: 1,
+                                    zIndex: 0,
+                                    pointerEvents: 'none',
+                                    letterSpacing: '-0.05em'
+                                }}>
+                                    {step.number}
+                                </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
-                        whileHover={{ y: -5, boxShadow: '0 20px 40px -10px rgba(255, 170, 0, 0.15)', borderTop: '1px solid rgba(255, 170, 0, 1)' }}
-                        style={{ ...cardBaseStyle, borderTop: '1px solid rgba(255, 170, 0, 0.5)', background: 'linear-gradient(180deg, rgba(255, 170, 0, 0.08) 0%, rgba(10, 10, 10, 0.8) 100%)', boxShadow: 'inset 0 20px 40px -20px rgba(255, 170, 0, 0.1)' }}
-                    >
-                        <div className="card-image-wrapper" style={{ width: '100%', height: '200px', borderRadius: '12px', overflow: 'hidden', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.05)' }}>
-                            <img src={consoleAbstract} alt="Lighting Console Abstract" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'} />
-                        </div>
-                        <Zap style={{ color: 'var(--accent-orange)', marginBottom: '1.5rem', width: 32, height: 32 }} />
-                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', fontWeight: 500, color: 'var(--accent-orange)' }}>{t('workflow.card2_title')}</h3>
-                        <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>{t('workflow.card2_desc')}</p>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                        whileHover={{ y: -5, boxShadow: '0 20px 40px -10px rgba(0, 242, 255, 0.1)', borderTop: '1px solid rgba(0, 242, 255, 0.8)' }}
-                        style={{ ...cardBaseStyle, borderTop: '1px solid rgba(0, 242, 255, 0.3)', boxShadow: 'inset 0 20px 40px -20px rgba(0, 242, 255, 0.05)' }}
-                    >
-                        <div className="card-image-wrapper" style={{ width: '100%', height: '200px', borderRadius: '12px', overflow: 'hidden', marginBottom: '2rem', border: '1px solid rgba(255,255,255,0.05)' }}>
-                            <img src={concertCrowd} alt="Concert Crowd Lights" style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'} />
-                        </div>
-                        <Layers style={{ color: 'var(--accent-cyan)', marginBottom: '1.5rem', width: 32, height: 32 }} />
-                        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', fontWeight: 500 }}>{t('workflow.card3_title')}</h3>
-                        <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>{t('workflow.card3_desc')}</p>
-                    </motion.div>
-                </div>
-
-                <div className="comparison-section" style={{ marginTop: '8rem' }}>
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="comparison-header"
-                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '4rem' }}
-                    >
-                        <div className="aura-badge" style={{ marginBottom: '1.5rem' }}>
-                            <div className="dot"></div> EFFICIENCY_METRICS
-                        </div>
-                        <h3 style={{ fontSize: '2.5rem', fontWeight: 600, marginBottom: '1rem' }}>{t('workflow.comparison_title')}</h3>
-                        <p style={{ color: 'var(--text-secondary)' }}>{t('workflow.comparison_subtitle')}</p>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        className="comparison-table-wrapper"
-                        style={{
-                            background: 'rgba(10,10,10,0.8)',
-                            backdropFilter: 'blur(16px)',
-                            border: '1px solid rgba(255,255,255,0.1)',
-                            borderRadius: 'var(--card-radius)',
-                            overflow: 'hidden',
-                            padding: '1px',
-                            boxShadow: '0 20px 40px -10px rgba(0,0,0,0.5)'
-                        }}
-                    >
-                        <div style={{ background: '#050505', borderRadius: 'calc(var(--card-radius) - 1px)', padding: '2rem', overflowX: 'auto' }}>
-                            <table className="comparison-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-                                <thead>
-                                    <tr>
-                                        {t('workflow.comparison_headers').map((header, index) => (
-                                            <th key={index} style={{ padding: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', color: 'var(--text-secondary)', textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '0.05em' }}>{header}</th>
-                                        ))}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {t('workflow.comparison_rows').map((row, index) => (
-                                        <tr key={index}>
-                                            <td style={{ padding: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)', color: '#FFF', fontWeight: 500 }}>{row.feature}</td>
-                                            <td style={{ padding: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)', color: 'var(--text-secondary)' }}>{row.old}</td>
-                                            <td style={{ padding: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)', color: 'var(--accent-cyan)', background: 'rgba(0,242,255,0.02)', fontWeight: 600 }}>
-                                                <span style={{ marginRight: '0.5rem' }}>✓</span>
-                                                {row.new}
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                    </motion.div>
+                                <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', gap: '24px', paddingLeft: '20px', borderLeft: '1px solid rgba(255,255,255,0.1)' }}>
+                                    <div style={{ color: '#fff' }}>
+                                        {step.icon}
+                                    </div>
+                                    <h3 style={{ fontSize: '2.5rem', fontWeight: 500, color: '#fff', letterSpacing: '-0.01em', lineHeight: 1.2 }}>
+                                        {step.title}
+                                    </h3>
+                                    <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.6)', lineHeight: 1.6, maxWidth: '400px' }}>
+                                        {step.desc}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </div>
+
+            {/* HUD Comparison List Section */}
+            <div style={{ padding: '120px 20px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                <div className="container" style={{ maxWidth: '1000px', margin: '0 auto' }}>
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        style={{ textAlign: 'center', marginBottom: '80px' }}
+                    >
+                        <h3 className="web3-text-gradient" style={{ fontSize: '3rem', fontWeight: 600, letterSpacing: '-0.02em', marginBottom: '16px' }}>
+                            {t('workflow.comparison_title')}
+                        </h3>
+                        <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.5)' }}>{t('workflow.comparison_subtitle')}</p>
+                    </motion.div>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                        {t('workflow.comparison_rows').map((row, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1 }}
+                                style={{
+                                    display: 'grid',
+                                    gridTemplateColumns: 'minmax(120px, 1fr) 2fr auto 3fr',
+                                    gap: '20px',
+                                    alignItems: 'center',
+                                    padding: '24px',
+                                    background: '#050505',
+                                    border: '1px solid rgba(255,255,255,0.05)',
+                                    borderRadius: '16px',
+                                    position: 'relative',
+                                    overflow: 'hidden'
+                                }}
+                            >
+                                <style>{`
+                                    @media (max-width: 768px) {
+                                        .hud-row-${index} {
+                                            grid-template-columns: 1fr !important;
+                                            gap: 12px !important;
+                                        }
+                                        .hud-arrow-${index} { transform: rotate(90deg); margin: 8px 0; }
+                                    }
+                                `}</style>
+
+                                {/* Feature Label */}
+                                <div className={`hud-row-${index}`} style={{ gridColumn: '1 / -1', display: 'grid', gridTemplateColumns: 'inherit', gap: 'inherit', alignItems: 'center' }}>
+                                    <div style={{ color: '#fff', fontSize: '14px', fontWeight: 'bold', letterSpacing: '1px', textTransform: 'uppercase' }}>
+                                        {row.feature}
+                                    </div>
+
+                                    {/* Old (Crossed out/dimmed) */}
+                                    <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: '14px', textDecoration: 'line-through' }}>
+                                        {row.old}
+                                    </div>
+
+                                    {/* Arrow */}
+                                    <div className={`hud-arrow-${index}`} style={{ display: 'flex', justifyContent: 'center', opacity: 0.3 }}>
+                                        <ArrowRight size={20} color="#fff" />
+                                    </div>
+
+                                    {/* New (Bright and highlighted) */}
+                                    <div style={{ color: '#fff', fontSize: '15px', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                        <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#fff', boxShadow: '0 0 10px #fff' }} />
+                                        {row.new}
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
         </section>
     );
 };

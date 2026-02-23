@@ -50,9 +50,6 @@ const Pricing = () => {
                         whileHover={{ y: -5, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.1)' }}
                         style={baseCardStyle}
                     >
-                        <div style={{ display: 'inline-block', padding: '0.25rem 0.75rem', background: 'rgba(255,255,255,0.05)', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-secondary)', marginBottom: '2rem', alignSelf: 'flex-start' }}>
-                            BASIC / FORK
-                        </div>
                         <div className="card-header" style={{ marginBottom: '2.5rem', paddingBottom: '2.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                             <h3 style={{ fontSize: '1.5rem', fontWeight: 500, color: '#FFF', marginBottom: '0.5rem' }}>{t('pricing.free_name')}</h3>
                             <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginBottom: '1.5rem', height: '48px' }}>{t('pricing.free_desc')}</p>
@@ -60,7 +57,6 @@ const Pricing = () => {
                             <div className="price" style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
                                 <span style={{ fontSize: '1.5rem', color: 'var(--text-secondary)', fontWeight: 500 }}>{t('pricing.free_currency')}</span>
                                 <span style={{ fontSize: '3.5rem', fontWeight: 700, letterSpacing: '-0.02em', color: '#FFF', fontFamily: 'var(--font-mono)' }}>{t('pricing.free_price')}</span>
-                                <span style={{ fontSize: '1rem', color: 'var(--text-secondary)', fontWeight: 500, marginLeft: '0.25rem', textTransform: 'uppercase' }}>/ CYCLE</span>
                             </div>
                         </div>
 
@@ -88,9 +84,6 @@ const Pricing = () => {
                         whileHover={{ y: -5, boxShadow: '0 25px 50px -12px rgba(0,242,255,0.15), inset 0 0 0 1px rgba(0,242,255,0.5)' }}
                         style={{ ...baseCardStyle, border: '1px solid rgba(0, 242, 255, 0.2)', background: 'linear-gradient(180deg, rgba(0, 242, 255, 0.05) 0%, rgba(10, 10, 10, 0.9) 100%)' }}
                     >
-                        <div style={{ display: 'inline-block', padding: '0.25rem 0.75rem', background: 'rgba(0,242,255,0.1)', border: '1px solid rgba(0,242,255,0.2)', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--accent-cyan)', marginBottom: '2rem', alignSelf: 'flex-start' }}>
-                            CYAN / STANDARD
-                        </div>
                         <div className="card-header" style={{ marginBottom: '2.5rem', paddingBottom: '2.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                             <h3 style={{ fontSize: '1.5rem', fontWeight: 500, color: '#FFF', marginBottom: '0.5rem' }}>{t('pricing.pro_name')}</h3>
                             <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginBottom: '1.5rem', height: '48px' }}>{t('pricing.pro_desc')}</p>
@@ -98,7 +91,6 @@ const Pricing = () => {
                             <div className="price" style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
                                 <span style={{ fontSize: '1.5rem', color: 'var(--text-secondary)', fontWeight: 500 }}>{t('pricing.pro_currency')}</span>
                                 <span style={{ fontSize: '3.5rem', fontWeight: 700, letterSpacing: '-0.02em', color: '#FFF', fontFamily: 'var(--font-mono)' }}>{t('pricing.pro_price')}</span>
-                                <span style={{ fontSize: '1rem', color: 'var(--text-secondary)', fontWeight: 500, marginLeft: '0.25rem', textTransform: 'uppercase' }}>/ CYCLE</span>
                             </div>
                         </div>
 
@@ -130,9 +122,6 @@ const Pricing = () => {
                             {t('pricing.popular_badge')}
                         </div>
 
-                        <div style={{ display: 'inline-block', padding: '0.25rem 0.75rem', background: 'rgba(255,170,0,0.1)', border: '1px solid rgba(255,170,0,0.2)', borderRadius: '99px', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--accent-orange)', marginBottom: '2rem', alignSelf: 'flex-start' }}>
-                            ORANGE / ELEVATED
-                        </div>
                         <div className="card-header" style={{ marginBottom: '2.5rem', paddingBottom: '2.5rem', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                             <h3 style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--accent-orange)', marginBottom: '0.5rem' }}>{t('pricing.ultra_name')}</h3>
                             <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', marginBottom: '1.5rem', height: '48px' }}>{t('pricing.ultra_desc')}</p>
@@ -140,7 +129,6 @@ const Pricing = () => {
                             <div className="price" style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem' }}>
                                 <span style={{ fontSize: '1.5rem', color: 'var(--text-secondary)', fontWeight: 500 }}>{t('pricing.ultra_currency')}</span>
                                 <span style={{ fontSize: '3.5rem', fontWeight: 700, letterSpacing: '-0.02em', color: '#FFF', fontFamily: 'var(--font-mono)', textShadow: '0 0 20px rgba(255,170,0,0.3)' }}>{t('pricing.ultra_price')}</span>
-                                <span style={{ fontSize: '1rem', color: 'var(--text-secondary)', fontWeight: 500, marginLeft: '0.25rem', textTransform: 'uppercase' }}>/ CYCLE</span>
                             </div>
                         </div>
 
