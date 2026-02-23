@@ -15,7 +15,7 @@ function App() {
     const { t } = useLanguage();
     return (
         <div className="app">
-            <div className="mesh-gradient" />
+            <div className="noise-overlay" />
             <NavBar />
             <main>
                 <Hero />
