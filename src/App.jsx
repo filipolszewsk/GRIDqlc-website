@@ -21,6 +21,12 @@ function App() {
         setVideoUrl(url);
         setIsVideoOpen(true);
     };
+
+    const handleCloseVideo = () => {
+        setIsVideoOpen(false);
+        // Optional: erase URL after animation finishes so video stops playing
+        setTimeout(() => setVideoUrl(''), 800);
+    };
     return (
         <div className="app">
             <div className="noise-overlay" />
@@ -31,7 +37,7 @@ function App() {
                 </div>
 
                 {/* Embedded Video Reveal Section */}
-                <WalkthroughVideo isVisible={isVideoOpen} videoUrl={videoUrl} />
+                <WalkthroughVideo isVisible={isVideoOpen} videoUrl={videoUrl} onClose={handleCloseVideo} />
 
                 <div style={{ position: 'relative', zIndex: 5, background: 'var(--bg-color)' }}>
                     <GridWorkflow />
