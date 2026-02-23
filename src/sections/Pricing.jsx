@@ -19,7 +19,7 @@ const Pricing = () => {
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
-        transition: 'all 0.4s ease'
+        transition: 'background 0.4s ease, border-color 0.4s ease'
     };
 
     return (
@@ -28,7 +28,7 @@ const Pricing = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, amount: 0.1 }}
                     className="section-header"
                     style={{ marginBottom: '6rem', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
                 >
@@ -45,7 +45,7 @@ const Pricing = () => {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
+                        viewport={{ once: true, margin: "-50px", amount: 0.1 }}
                         transition={{ duration: 0.5, delay: 0.1 }}
                         whileHover={{ y: -5, boxShadow: '0 25px 50px -12px rgba(0,0,0,0.8), inset 0 0 0 1px rgba(255,255,255,0.1)' }}
                         style={baseCardStyle}
@@ -79,7 +79,7 @@ const Pricing = () => {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
+                        viewport={{ once: true, margin: "-50px", amount: 0.1 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                         whileHover={{ y: -5, boxShadow: '0 25px 50px -12px rgba(0,242,255,0.15), inset 0 0 0 1px rgba(0,242,255,0.5)' }}
                         style={{ ...baseCardStyle, border: '1px solid rgba(0, 242, 255, 0.2)', background: 'linear-gradient(180deg, rgba(0, 242, 255, 0.05) 0%, rgba(10, 10, 10, 0.9) 100%)' }}
@@ -113,7 +113,7 @@ const Pricing = () => {
                     <motion.div
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
+                        viewport={{ once: true, margin: "-50px", amount: 0.1 }}
                         transition={{ duration: 0.5, delay: 0.3 }}
                         whileHover={{ y: -5, boxShadow: '0 30px 60px -15px rgba(255,170,0,0.3), inset 0 0 0 1px rgba(255,170,0,0.8)' }}
                         style={{ ...baseCardStyle, border: '1px solid rgba(255, 170, 0, 0.4)', background: 'linear-gradient(180deg, rgba(255, 170, 0, 0.08) 0%, rgba(10, 10, 10, 0.95) 100%)', boxShadow: '0 20px 40px -10px rgba(255,170,0,0.15)' }}
