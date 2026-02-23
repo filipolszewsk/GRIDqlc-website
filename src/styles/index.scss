@@ -2,20 +2,32 @@
 
 :root {
     --bg-color: #000000;
-    --text-color: #ffffff;
-    --accent-color: #D1FF1F;
-    --accent-secondary: #00F0FF;
-    --text-secondary: #A0A0A0;
+    --bg-card: rgba(255, 255, 255, 0.02);
+    --text-color: #FAFAFA;
+    --text-secondary: #A1A1AA;
+    --accent-color: #00E5FF;
+    --accent-secondary: #B026FF;
     --font-primary: 'Inter', sans-serif;
     --font-heading: 'Inter', sans-serif;
     --font-mono: 'Space Mono', monospace;
 
-    // SundayScreens Strict Recipe
-    --section-padding: 10rem 0;
-    --card-radius: 30px;
-    --btn-radius: 6px;
-    --border-thin: 1px solid rgba(255, 255, 255, 0.15);
-    --border-accent: 1px solid var(--accent-color);
+    // Aura Design Requirements
+    --aura-border: 1px solid rgba(255, 255, 255, 0.08);
+    --aura-glow: 0 0 20px rgba(0, 229, 255, 0.15);
+
+    // Layout
+    --section-padding: 8rem 0;
+    --card-radius: 16px;
+    --btn-radius: 8px;
+}
+
+// Aura Utilities
+.aura-glass {
+    background: var(--bg-card);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: var(--aura-border);
+    border-radius: var(--card-radius);
 }
 
 * {
@@ -62,14 +74,21 @@ section {
 
 .navbar {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 80px; // Fixed height for slimness
-    padding: 0; // Remove padding to keep bar height strictly 80px
+    top: 20px;
+    /* Floating pill */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+    height: 60px;
+    padding: 0 1.5rem;
     z-index: 100;
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: var(--aura-border);
+    border-radius: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 
     .nav-content {
         height: 100%;
@@ -79,7 +98,7 @@ section {
         position: relative;
 
         .logo-container {
-            width: 140px; // Placeholder width to keep flex flow healthy
+            width: auto;
             height: 100%;
             position: relative;
             cursor: pointer;
@@ -87,24 +106,14 @@ section {
             align-items: center;
 
             .nav-logo {
-                position: absolute;
-                left: 0;
-                top: 50%;
-                transform: translateY(-50%);
-                height: 120px; // Massive logo
+                height: 40px; // Scaled down to fit pill
                 width: auto;
                 filter: invert(1);
-                transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                transform-origin: left center;
+                transition: all 0.3s ease;
                 z-index: 10;
 
-                @media (max-width: 768px) {
-                    height: 80px; // Scaled down for mobile sanity
-                }
-
                 &:hover {
-                    transform: translateY(-50%) scale(1.05);
-                    opacity: 1;
+                    opacity: 0.8;
                 }
             }
         }
@@ -112,7 +121,7 @@ section {
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1.5rem;
 
             &.desktop-only {
                 @media (max-width: 768px) {
@@ -121,13 +130,16 @@ section {
             }
 
             a {
-                color: var(--text-color);
+                color: var(--text-secondary);
                 text-decoration: none;
+                font-size: 0.9rem;
                 font-weight: 500;
-                transition: color 0.3s;
+                transition: all 0.3s;
+                position: relative;
 
                 &:hover {
-                    color: var(--accent-color);
+                    color: var(--text-color);
+                    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
                 }
             }
         }
@@ -204,30 +216,48 @@ section {
 }
 
 .btn-primary {
-    background: var(--accent-color);
-    color: #000;
-    border: none;
+    background: rgba(0, 0, 0, 0.4);
+    color: var(--text-color);
+    border: 1px solid rgba(0, 229, 255, 0.5);
     padding: 1rem 2.5rem;
-    border-radius: var(--btn-radius);
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 0.05em;
+    border-radius: 30px; // Pill shape is hallmark of Aura
+    font-weight: 500;
+    font-size: 0.95rem;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.4s ease;
+    box-shadow: var(--aura-glow);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 
     &:hover {
-        transform: translateY(-2px) scale(1.02);
-        box-shadow: 0 4px 25px rgba(209, 255, 31, 0.5);
+        transform: translateY(-2px);
+        background: rgba(0, 229, 255, 0.1);
+        border: 1px solid rgba(0, 229, 255, 1);
+        box-shadow: 0 0 30px rgba(0, 229, 255, 0.4);
     }
 }
 
 .hero {
     min-height: 100vh;
     display: flex;
-    align-items: center; // Back to center for better focus
+    align-items: center;
     padding-top: 8rem;
     padding-bottom: 8rem;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 800px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(0, 229, 255, 0.15) 0%, rgba(176, 38, 255, 0.05) 40%, rgba(0, 0, 0, 0) 70%);
+        filter: blur(80px);
+        z-index: 0;
+        pointer-events: none;
+    }
 
     .hero-content {
         display: grid;
@@ -365,16 +395,20 @@ section {
     }
 
     .feature-card {
-        background: transparent;
-        border: var(--border-thin);
+        background: var(--bg-card);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: var(--aura-border);
         padding: 4rem 3rem;
         border-radius: var(--card-radius);
-        transition: border-color 0.3s;
+        transition: all 0.4s ease;
         display: flex;
         flex-direction: column;
 
         &:hover {
-            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            border-color: rgba(0, 229, 255, 0.4);
+            box-shadow: 0 10px 40px rgba(0, 229, 255, 0.1);
         }
 
         .card-image-wrapper {
@@ -425,9 +459,9 @@ section {
         }
 
         &.highlight-card {
-            border-color: rgba(209, 255, 31, 0.5);
-            background: radial-gradient(circle at top right, rgba(209, 255, 31, 0.05), transparent 70%);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            border-color: rgba(0, 229, 255, 0.5);
+            background: radial-gradient(circle at top right, rgba(0, 229, 255, 0.05), transparent 70%);
+            box-shadow: 0 10px 40px rgba(0, 229, 255, 0.15);
         }
     }
 
@@ -451,8 +485,10 @@ section {
         }
 
         .comparison-table-wrapper {
-            background: rgba(255, 255, 255, 0.02);
-            border: var(--border-thin);
+            background: var(--bg-card);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: var(--aura-border);
             border-radius: var(--card-radius);
             overflow-x: auto;
             padding: 2rem;
@@ -550,8 +586,10 @@ section {
     margin-top: 6rem;
 
     .new-card {
-        background: rgba(255, 255, 255, 0.02);
-        border: var(--border-thin);
+        background: var(--bg-card);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: var(--aura-border);
         border-radius: var(--card-radius);
         padding: 4rem;
 
@@ -617,27 +655,31 @@ section {
     }
 
     .pricing-card {
-        background: rgba(255, 255, 255, 0.02);
-        border: var(--border-thin);
+        background: var(--bg-card);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: var(--aura-border);
         border-radius: var(--card-radius);
         padding: 3rem;
         display: flex;
         flex-direction: column;
-        transition: transform 0.3s ease, border-color 0.3s ease;
+        transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
         position: relative;
 
         &:hover {
             transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.2);
+            border-color: rgba(0, 229, 255, 0.4);
+            box-shadow: 0 10px 40px rgba(0, 229, 255, 0.1);
         }
 
         &.ultra-card {
-            background: linear-gradient(to bottom, rgba(209, 255, 31, 0.05), rgba(255, 255, 255, 0.02));
-            border-color: rgba(209, 255, 31, 0.3);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(to bottom, rgba(0, 229, 255, 0.05), rgba(176, 38, 255, 0.02));
+            border-color: rgba(0, 229, 255, 0.5);
+            box-shadow: 0 10px 40px rgba(0, 229, 255, 0.2);
 
             &:hover {
-                border-color: rgba(209, 255, 31, 0.6);
+                border-color: rgba(0, 229, 255, 1);
+                box-shadow: 0 10px 50px rgba(0, 229, 255, 0.4);
             }
 
             .popular-badge {
@@ -754,12 +796,13 @@ section {
 // CTA Section
 .cta {
     .cta-card {
-        background: linear-gradient(135deg, rgba(209, 255, 31, 0.05), rgba(0, 240, 255, 0.05));
+        background: linear-gradient(135deg, rgba(0, 229, 255, 0.05), rgba(176, 38, 255, 0.05));
         padding: 8rem 6rem;
         border-radius: var(--card-radius);
         text-align: center;
-        border: var(--border-standard);
-        backdrop-filter: blur(20px);
+        border: var(--aura-border);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
 
         h2 {
             font-size: 3.5rem;

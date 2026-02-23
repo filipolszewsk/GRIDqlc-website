@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/activation",
+      "destination": "https://gridqlc-activator.vercel.app/"
+    },
+    {
+      "source": "/activation/:path*",
+      "destination": "https://gridqlc-activator.vercel.app/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
