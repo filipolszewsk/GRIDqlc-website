@@ -21,6 +21,10 @@
     --section-padding: 8rem 0;
     --card-radius: 24px;
     --btn-radius: 99px;
+
+    @media (max-width: 768px) {
+        --section-padding: 3rem 0;
+    }
 }
 
 // Global Noise Overlay

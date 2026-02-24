@@ -26,8 +26,8 @@ const Hero = ({ onPlayVideo }) => {
                 flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
-                paddingTop: isMobile ? '160px' : '280px',
-                paddingBottom: isMobile ? '40px' : '102px'
+                paddingTop: isMobile ? '120px' : '280px',
+                paddingBottom: isMobile ? '0px' : '102px'
             }}
         >
             {/* Background Image (temporary until video is ready) */}

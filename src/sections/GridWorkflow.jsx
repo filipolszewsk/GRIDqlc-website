@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Grid, Layers, Zap, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -6,6 +6,14 @@ import { useLanguage } from '../context/LanguageContext';
 const GridWorkflow = () => {
     const { t } = useLanguage();
     const containerRef = useRef(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 1024);
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -34,7 +42,12 @@ const GridWorkflow = () => {
     ];
 
     return (
-        <section id="workflow" style={{ backgroundColor: '#000', position: 'relative', overflow: 'visible' }}>
+        <section id="workflow" style={{
+            backgroundColor: '#000',
+            position: 'relative',
+            overflow: 'visible',
+            paddingTop: isMobile ? '0' : 'var(--section-padding)'
+        }}>
 
             {/* Sticky Scroll Section */}
             <div ref={containerRef} style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
@@ -76,9 +89,9 @@ const GridWorkflow = () => {
                     }
                     @media (max-width: 1023px) {
                         .sticky-header {
-                            top: 0;
+                            top: 80px;
                             width: 100%;
-                            padding-top: 130px; 
+                            padding-top: 0; 
                             padding-bottom: 20px;
                             z-index: 20;
                         }
@@ -102,7 +115,7 @@ const GridWorkflow = () => {
                             gap: 120px;
                         }
                         .container-layout {
-                            padding: 60px 20px !important;
+                            padding: 0 20px !important;
                         }
                         .comparison-section {
                             padding: 60px 20px !important;
