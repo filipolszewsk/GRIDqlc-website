@@ -19,14 +19,15 @@ const Hero = ({ onPlayVideo }) => {
             style={{
                 position: 'relative',
                 width: '100vw',
-                height: '100vh',
+                minHeight: isMobile ? 'auto' : '100vh',
                 backgroundColor: '#000',
                 overflow: 'hidden',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                paddingTop: isMobile ? '200px' : '280px',
-                paddingBottom: '102px'
+                justifyContent: 'center',
+                paddingTop: isMobile ? '160px' : '280px',
+                paddingBottom: isMobile ? '40px' : '102px'
             }}
         >
             {/* Background Image (temporary until video is ready) */}
@@ -157,7 +158,7 @@ const Hero = ({ onPlayVideo }) => {
                     </a>
                 </motion.div>
             </div>
-        </section>
+        </section >
     );
 };
 
