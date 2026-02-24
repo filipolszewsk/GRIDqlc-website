@@ -12,37 +12,43 @@ const Features = () => {
             title: t('features.f1_title'),
             desc: t('features.f1_desc'),
             icon: <LayoutGrid />,
-            span: 'col-span-1 md:col-span-2 row-span-2' // Large Feature 1
+            hoverColor: 'rgba(0, 242, 255, 0.15)',
+            borderColor: 'rgba(0, 242, 255, 0.8)'
         },
         {
             title: t('features.f2_title'),
             desc: t('features.f2_desc'),
             icon: <RefreshCw />,
-            span: 'col-span-1 md:col-span-1 row-span-1'
+            hoverColor: 'rgba(255, 170, 0, 0.15)',
+            borderColor: 'rgba(255, 170, 0, 0.8)'
         },
         {
             title: t('features.f3_title'),
             desc: t('features.f3_desc'),
             icon: <Zap />,
-            span: 'col-span-1 md:col-span-1 row-span-1'
+            hoverColor: 'rgba(0, 242, 255, 0.15)',
+            borderColor: 'rgba(0, 242, 255, 0.8)'
         },
         {
             title: t('features.f4_title'),
             desc: t('features.f4_desc'),
             icon: <List />,
-            span: 'col-span-1 md:col-span-2 row-span-1' // Wide Feature
+            hoverColor: 'rgba(255, 170, 0, 0.15)',
+            borderColor: 'rgba(255, 170, 0, 0.8)'
         },
         {
             title: t('features.f5_title'),
             desc: t('features.f5_desc'),
             icon: <Save />,
-            span: 'col-span-1 md:col-span-1 row-span-2' // Tall Feature
+            hoverColor: 'rgba(0, 242, 255, 0.15)',
+            borderColor: 'rgba(0, 242, 255, 0.8)'
         },
         {
             title: t('features.f6_title'),
             desc: t('features.f6_desc'),
             icon: <Settings2 />,
-            span: 'col-span-1 md:col-span-1 row-span-1'
+            hoverColor: 'rgba(255, 170, 0, 0.15)',
+            borderColor: 'rgba(255, 170, 0, 0.8)'
         }
     ];
 
@@ -97,11 +103,9 @@ const Features = () => {
                     <style>{`
                         @media (min-width: 768px) {
                             .bento-grid {
-                                grid-template-columns: repeat(3, 1fr);
-                                grid-auto-rows: minmax(150px, auto);
+                                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                                grid-auto-rows: 1fr;
                             }
-                            .col-span-2 { grid-column: span 2; }
-                            .row-span-2 { grid-row: span 2; }
                         }
                     `}</style>
                     <div className="bento-grid" style={{ display: 'grid', gap: '20px', width: '100%' }}>
@@ -112,26 +116,31 @@ const Features = () => {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true, amount: 0.1 }}
                                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                                className={f.span}
+                                className="console-button"
                                 style={{
-                                    background: '#050505',
-                                    border: '1px solid rgba(255,255,255,0.08)',
-                                    borderRadius: '24px',
+                                    background: '#0a0a0a',
+                                    border: '1px solid rgba(255,255,255,0.1)',
+                                    borderRadius: '16px',
                                     padding: '40px',
                                     display: 'flex',
                                     flexDirection: 'column',
                                     justifyContent: 'flex-start',
                                     position: 'relative',
                                     overflow: 'hidden',
-                                    transition: 'background 0.3s ease, border-color 0.3s ease'
+                                    cursor: 'pointer',
+                                    transition: 'background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease'
                                 }}
                                 onMouseEnter={(e) => {
-                                    e.currentTarget.style.background = 'linear-gradient(145deg, #0a0a0a 0%, #050505 100%)';
-                                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)';
+                                    e.currentTarget.style.background = f.hoverColor;
+                                    e.currentTarget.style.borderColor = f.borderColor;
+                                    e.currentTarget.style.boxShadow = `0 0 30px ${f.hoverColor}, inset 0 0 20px ${f.hoverColor}`;
+                                    e.currentTarget.style.transform = 'scale(0.98)';
                                 }}
                                 onMouseLeave={(e) => {
-                                    e.currentTarget.style.background = '#050505';
-                                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
+                                    e.currentTarget.style.background = '#0a0a0a';
+                                    e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)';
+                                    e.currentTarget.style.boxShadow = 'none';
+                                    e.currentTarget.style.transform = 'scale(1)';
                                 }}
                             >
                                 {/* Radial subtle hover glow could be added here via JS event listener, keeping static for now */}
