@@ -27,7 +27,7 @@ const Hero = ({ onPlayVideo }) => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 paddingTop: isMobile ? '120px' : '280px',
-                paddingBottom: isMobile ? '0px' : '102px'
+                paddingBottom: isMobile ? '24px' : '102px'
             }}
         >
             {/* Background Image (temporary until video is ready) */}

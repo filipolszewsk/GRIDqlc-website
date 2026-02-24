@@ -46,7 +46,7 @@ const GridWorkflow = () => {
             backgroundColor: '#000',
             position: 'relative',
             overflow: 'visible',
-            paddingTop: isMobile ? '0' : 'var(--section-padding)'
+            paddingTop: isMobile ? '24px' : 'var(--section-padding)'
         }}>
 
             {/* Sticky Scroll Section */}
@@ -115,7 +115,7 @@ const GridWorkflow = () => {
                             gap: 120px;
                         }
                         .container-layout {
-                            padding: 0 20px !important;
+                            padding: 24px 20px !important;
                         }
                         .comparison-section {
                             padding: 60px 20px !important;
